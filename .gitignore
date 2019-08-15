@@ -1,4 +1,5 @@
 .idea
+.env
 
 grafana/defaults.ini
 grafana/var/lib/grafana/*
