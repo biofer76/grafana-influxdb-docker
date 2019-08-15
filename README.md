@@ -23,4 +23,13 @@ Stop containers
 docker-compose down
 ```
 
+Connect to Grafana UI
+
+```
+# Local environment
+http://localhost
+
+# Online instance
+http://your.domain.com
+```
 ## 

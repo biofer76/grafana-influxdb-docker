@@ -14,7 +14,7 @@ services:
   influxdb:
     image: influxdb:1.5.4
     volumes:
-    - "${PWD}/influxdb/etc/influxdb/influxdb.conf:/etc/influxdb/influxdb.conf"
+    - "${PWD}/influxdb/etc/influxdb/influxdb.conf:/etc/influxdb/influxdb.conf:ro"
     - "${PWD}/influxdb/var/lib/influxdb:/var/lib/influxdb"
     networks:
       - grafana-influxdb
@@ -27,7 +27,7 @@ services:
   grafana:
     image: grafana/grafana:latest
     volumes:
-      - "${PWD}/grafana/defaults.ini:/usr/share/grafana/conf/defaults.ini"
+      - "${PWD}/grafana/defaults.ini:/usr/share/grafana/conf/defaults.ini:ro"
       - "${PWD}/grafana/etc/grafana/provisioning:/etc/grafana/provisioning"
       - "${PWD}/grafana/var/lib/grafana:/var/lib/grafana"
       - "${PWD}/grafana/var/log/grafana:/var/log/grafana"
