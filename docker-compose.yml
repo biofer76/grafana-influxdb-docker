@@ -1,0 +1,41 @@
+version: '3'
+services:
+  nginx:
+    image: nginx:1.17.2
+    volumes:
+      - "${PWD}/nginx/default.conf:/etc/nginx/conf.d/default.conf"
+    networks:
+      - grafana-influxdb
+    ports:
+      - "80:80"
+    restart: always
+  influxdb:
+    image: influxdb:1.5.4
+    volumes:
+    - "${PWD}/influxdb/etc/influxdb/influxdb.conf:/etc/influxdb/influxdb.conf"
+    - "${PWD}/influxdb/var/lib/influxdb:/var/lib/influxdb"
+    networks:
+      - grafana-influxdb
+    ports:
+    - "8086:8086"
+    # - 8083:80803
+    restart: always
+  grafana:
+    image: grafana/grafana:latest
+    volumes:
+      - "${PWD}/grafana/defaults.ini:/usr/share/grafana/conf/defaults.ini"
+      - "${PWD}/grafana/etc/grafana/provisioning:/etc/grafana/provisioning"
+      - "${PWD}/grafana/var/lib/grafana:/var/lib/grafana"
+      - "${PWD}/grafana/var/log/grafana:/var/log/grafana"
+    networks:
+      - grafana-influxdb
+    ports:
+    - "3000:3000"
+    restart: always
+    environment:
+      GF_SERVER_ROOT_URL: "http://grafana.particles.io"
+      GF_SECURITY_ADMIN_PASSWORD: "gJWx4H-sbvN-xdKN7g"
+
+networks:
+  grafana-influxdb:
+
