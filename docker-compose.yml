@@ -4,7 +4,7 @@ services:
     build: ./nginx
     image: grafana-influixdb-docker/nginx:1.17.2
 #    volumes:
-#      - "${PWD}/nginx/default.conf:/etc/nginx/conf.d/default.conf"
+#      - "${PWD}/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro"
     networks:
       - grafana-influxdb
     ports:
