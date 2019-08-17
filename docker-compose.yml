@@ -1,9 +1,10 @@
 version: '3'
 services:
   nginx:
-    image: nginx:1.17.2
-    volumes:
-      - "${PWD}/nginx/default.conf:/etc/nginx/conf.d/default.conf"
+    build: ./nginx
+    image: grafana-influixdb-docker/nginx:1.17.2
+#    volumes:
+#      - "${PWD}/nginx/default.conf:/etc/nginx/conf.d/default.conf"
     networks:
       - grafana-influxdb
     ports:
@@ -12,9 +13,10 @@ services:
     env_file:
       - .env
   influxdb:
-    image: influxdb:1.5.4
+    build: ./influxdb
+    image: grafana-influixdb-docker/influxdb:1.5.4
     volumes:
-    - "${PWD}/influxdb/etc/influxdb/influxdb.conf:/etc/influxdb/influxdb.conf:ro"
+#    - "${PWD}/influxdb/influxdb.conf:/etc/influxdb/influxdb.conf:ro"
     - "${PWD}/influxdb/var/lib/influxdb:/var/lib/influxdb"
     networks:
       - grafana-influxdb
@@ -26,7 +28,7 @@ services:
       - .env
   grafana:
     build: ./grafana
-    image: grafana-influixdb-docker/grafana
+    image: grafana-influixdb-docker/grafana:latest
     volumes:
 #      - "${PWD}/grafana/defaults.ini:/usr/share/grafana/conf/defaults.ini:ro"
       - "${PWD}/grafana/etc/grafana/provisioning:/etc/grafana/provisioning"

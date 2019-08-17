@@ -20,13 +20,30 @@ INFLUXDB_ADMIN_PASSWORD=db_passwd
 
 ```
 
-**2 - Create Grafana configuration file**  
-Copy and paste sample file defaults-sample.ini in the same folder.
+**2 - Create configuration files**  
+Clone following file w/o `-sample` suffix in file name:  
+
+- grafana/defaults-sample.ini
+- influxdb/influxdb-sample.conf
+
+CLI Commands
 
 ```
 cp grafana/defaults-sample.ini grafana/defaults.ini
+cp influxdb/influxdb-sample.conf influxdb/influxdb.conf 
 ```
 
+Feel free to change configuration files with your custom values.
+
+
+**3 - Build Docker images**    
+Build new images stack in order to configure them with custom parameters.
+
+```
+docker-compose build .
+```
+
+**4 - Run Docker containers stack**  
 Run Docker containers by Docker Compose
 ```
 docker-compose up -d
@@ -37,7 +54,8 @@ Stop containers
 docker-compose down
 ```
 
-Connect to Grafana UI
+**5 - Connect to Grafana UI**  
+Run in your browser Grafana URL and login into the UI
 
 ```
 # Local environment
@@ -47,12 +65,22 @@ http://localhost
 http://your.domain.com
 ```
 
-## Grafana
+## Containers Stack
+The service is composed by three containers:
+
+- **Grafana**: Charts and metrics UI
+- **InfluxDB**: Time series database to store all metrics
+- **Nginx**: Reverse proxy to manage HTTP/S requests and proxy to Grafana
+ 
+
+### Grafana
 
 You can apply your custom configuration in `grafana/defaults.ini` file
 
 
-## InfluxDB
+### InfluxDB
+
+Current version: **1.5.4**
 
 Test connection to InfluxDB
 
@@ -64,3 +92,5 @@ docker run --rm -t \
     influxdb:1.5.4 \
     curl -G http://influxdb:8086/query -u db_user:db_passwd --data-urlencode "q=SHOW DATABASES"
 ```
+
+### Nginx

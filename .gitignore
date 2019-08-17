@@ -11,5 +11,4 @@ grafana/etc/provisioning/notifiers/*
 
 
 influxdb/var/lib/influxdb/*
-!influxdb/var/lib/influxdb/.gitkeep
-influxdb/etc/influxdb/influxdb.conf
+influxdb/influxdb.conf
