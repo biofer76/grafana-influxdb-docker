@@ -12,3 +12,5 @@ grafana/etc/provisioning/notifiers/*
 
 influxdb/var/lib/influxdb/*
 influxdb/influxdb.conf
+
+nginx/default.conf
