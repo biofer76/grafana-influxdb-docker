@@ -25,9 +25,10 @@ services:
     env_file:
       - .env
   grafana:
-    image: grafana/grafana:latest
+    build: ./grafana
+    image: grafana-influixdb-docker/grafana
     volumes:
-      - "${PWD}/grafana/defaults.ini:/usr/share/grafana/conf/defaults.ini:ro"
+#      - "${PWD}/grafana/defaults.ini:/usr/share/grafana/conf/defaults.ini:ro"
       - "${PWD}/grafana/etc/grafana/provisioning:/etc/grafana/provisioning"
       - "${PWD}/grafana/var/lib/grafana:/var/lib/grafana"
       - "${PWD}/grafana/var/log/grafana:/var/log/grafana"
