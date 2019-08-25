@@ -17,6 +17,8 @@ INFLUXDB_DB=db_name
 INFLUXDB_HTTP_AUTH_ENABLED=true
 INFLUXDB_ADMIN_USER=db_user
 INFLUXDB_ADMIN_PASSWORD=db_passwd
+
+NGINX_HTTP_PORT=80
 ```
 
 **2 - Create configuration files**  
