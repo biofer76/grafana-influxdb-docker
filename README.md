@@ -17,7 +17,6 @@ INFLUXDB_DB=db_name
 INFLUXDB_HTTP_AUTH_ENABLED=true
 INFLUXDB_ADMIN_USER=db_user
 INFLUXDB_ADMIN_PASSWORD=db_passwd
-
 ```
 
 **2 - Create configuration files**  
@@ -42,13 +41,21 @@ Feel free to change configuration files with your custom values.
 Build new images stack in order to configure them with custom parameters.
 
 ```
-docker-compose build .
+# Load environment variable
+source .env
+
+# Build required Docker images
+docker-compose build
 ```
 
 **4 - Run Docker containers stack**  
 Run Docker containers by Docker Compose
 
 ```
+# Load environment variable
+source .env
+
+# Run containers
 docker-compose up -d
 ```
 
@@ -104,3 +111,18 @@ docker run --rm -t \
 ### Nginx
 
 Default configuration allows Nginx to send request to Grafana container to default exposed port (3000).
+
+## Persistent Storage
+
+I've mapped all folders inside containers to keep all important data stored in host folders.  
+In case you will destroy and re-run containers stack you won't lose any important information.
+
+Mounted Docker volumes:
+
+- `grafana/etc/grafana/provisioning`
+- `grafana/var/lib/grafana`
+- `grafana/var/log/grafana`
+- `influxdb/var/lib/influxdb`
+
+For more information about mounted volumes and related path check `docker-compose.yml`.
+

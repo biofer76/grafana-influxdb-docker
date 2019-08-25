@@ -8,7 +8,7 @@ services:
     networks:
       - grafana-influxdb
     ports:
-      - "80:80"
+      - "${NGINX_HTTP_PORT}:80"
     restart: always
     env_file:
       - .env
