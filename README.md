@@ -15,7 +15,7 @@ Create a new environment variables `.env` file in project root folder and set re
 GRAFANA_EXT_PORT=3000
 GRAFANA_SERVER_ROOT_URL=http://localhost
 GRAFANA_SECURITY_ADMIN_PASSWORD=admin
-INFLUXDB_EXT_PORT=3306
+INFLUXDB_EXT_PORT=8086
 INFLUXDB_DB=grafana
 INFLUXDB_HTTP_AUTH_ENABLED=true
 INFLUXDB_ADMIN_USER=grafana
@@ -68,7 +68,24 @@ http://localhost
 http://your.domain.com
 ```
 
+**5 - Connect InfluxDB to Grafana**  
+
+* Log in Grafana UI, then select from left menu **Configuration** > **Data Sources**  
+* Click on **Add data source** button
+* Select **InfluxDB** from the list
+
+Default Configuration
+
+Name: `InfluxDB`  
+URL: `http://influxdb:8086 `  
+Database: `grafana`
+User: `grafana`
+Password: `grafana`
+
+Click on **Save and Test** button
+
 ## Containers Stack
+
 The service is composed by three containers:
 
 - **Grafana**: Charts and metrics UI
@@ -80,7 +97,7 @@ The service is composed by three containers:
 
 Current version: `latest` on [Docker Hub](https://hub.docker.com/r/grafana/grafana)
 
-You can log in to Grafana UI as `admin` user and password set in `.env` file.
+You can log in to Grafana UI as `admin` user and password combination, at the first login you can update admin password.
 
 ### InfluxDB
 
